@@ -1,0 +1,43 @@
+﻿<Window x:Class="Exam_Add.AddAlbumWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exam_Add"
+        mc:Ignorable="d"
+        Title="Добавить альбом" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <!-- Так как окно будет диалоговым, то указываем именно эти свойства -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Название:"/>
+        <TextBox Name="AlbumTitleTb" Grid.Row="0" Grid.Column="2"/>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Дата выпуска:"/>
+        <DatePicker Name="ReleaseDateDp" Grid.Row="2" Grid.Column="2" />
+        
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Жанр:"/>
+        <!-- DisplayMemberPath и SelectedValuePath смотрим строго по таблице БД или через модель -->
+        <ComboBox Name="GenreCmb" Grid.Row="4" Grid.Column="2" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Исполнитель:" />
+        <ComboBox Name="ArtistCmb" Grid.Row="6" Grid.Column="2" DisplayMemberPath="Name" SelectedValuePath="Id" />
+
+        <Button Name="AddAlbumBtn" Grid.Row="8" Grid.Column="2" Content="Добавить" Click="AddAlbumBtn_Click"/>
+    </Grid>
+</Window>

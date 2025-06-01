@@ -1,0 +1,55 @@
+﻿<Window x:Class="Exam_FilterAndSearch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exam_FilterAndSearch"
+        mc:Ignorable="d" Title="Список групп" Width="1280" Height="720" WindowStartupLocation="CenterScreen">
+
+    <!-- Обязательно задаём стандартные настройки для окна -->
+    <!-- Делаем стандартную разметку -->
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Поиск по названию:"/>
+            <TextBox Name="SearchByNameTb" Grid.Column="2"/>
+
+            <TextBlock Grid.Column="4" Text="Фильтр по жанру:"/>
+            <ComboBox Name="FilterByGenreCmb" Grid.Column="6" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedIndex="0"/>
+
+            <Button Name="FilterAndSearchBtn" Grid.Column="8" Content="Поиск" Click="FilterAndSearchBtn_Click"/>
+        </Grid>
+
+        <!-- Реализация через ListView -->
+        <ListView Name="AlbumsLv" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <!-- Количество столбцов для ListView смотрим строго по таблице БД или через модель -->
+                    <GridViewColumn Header="Исполнитель" DisplayMemberBinding="{Binding Artist.Name}" />
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Title}" />
+                    <!-- Обязательно делаем форматирование даты -->
+                    <GridViewColumn Header="Дата выпуска" DisplayMemberBinding="{Binding ReleaseDate,StringFormat=dd.MM.yyyy}" />
+                    <GridViewColumn Header="Жанр" DisplayMemberBinding="{Binding Genre.Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
